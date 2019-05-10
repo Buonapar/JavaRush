@@ -21,7 +21,12 @@
         </tr>
         <c:forEach var="part" items="${partsList}" varStatus="i">
             <tr>
-                <td>${i.index + 1 + (page - 1) * 10}</td>
+                <td>${part.name}</td>
+                <td>
+                    <c:if test="${part.necessity}">Да</c:if>
+                    <c:if test="${!part.necessity}">Нет</c:if>
+                </td>
+                <td>${part.quantity}</td>
             </tr>
         </c:forEach>
     </table>

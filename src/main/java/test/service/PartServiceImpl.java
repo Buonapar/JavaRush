@@ -1,7 +1,7 @@
-package service;
+package test.service;
 
-import dao.PartDAOImpl;
-import model.Part;
+import test.dao.PartDAOImpl;
+import test.model.Part;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

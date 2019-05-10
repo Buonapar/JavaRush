@@ -1,10 +1,10 @@
-package service;
+package test.dao;
 
-import model.Part;
+import test.model.Part;
 
 import java.util.List;
 
-public interface PartService {
+public interface PartDAO {
     List<Part> PartsList (int page);
     void add(Part part);
     void delete(Part part);

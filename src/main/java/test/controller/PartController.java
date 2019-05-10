@@ -1,14 +1,13 @@
-package controller;
+package test.controller;
 
-import model.Part;
+import test.model.Part;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import service.PartService;
-import service.PartServiceImpl;
+import test.service.PartService;
 
 import java.util.List;
 
@@ -23,6 +22,7 @@ public class PartController {
     public void setPartService(PartService partService) {
         this.partService = partService;
     }
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView allParts(@RequestParam(defaultValue = "1") int page) {
         this.page = page;
