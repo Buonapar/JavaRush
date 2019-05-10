@@ -29,6 +29,11 @@
                 <td>${part.quantity}</td>
             </tr>
         </c:forEach>
+        <tr>
+            <th>Можно собрать</th>
+            <th>${countPC}</th>
+            <th>компьютеров</th>
+        </tr>
     </table>
 </body>
 </html>

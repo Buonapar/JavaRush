@@ -55,4 +55,11 @@ public class PartDAOImpl implements PartDAO {
     public List<Part> search(String query) {
         return null;
     }
+
+    @Override
+    public List<Part> allNecessity() {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "FROM Part WHERE necessity = true ";
+        return session.createQuery(hql).list();
+    }
 }

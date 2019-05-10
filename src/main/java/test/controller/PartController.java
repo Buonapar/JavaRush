@@ -30,11 +30,13 @@ public class PartController {
         List<Part> parts = partService.PartsList(page);
         int partCount = partService.partsCount();
         int pageCount = (partCount + 9) /10;
+        int countPC = partService.countPC();
         modelAndView.setViewName("parts");
         modelAndView.addObject("page", page);
         modelAndView.addObject("partsList", parts);
         modelAndView.addObject("partCount", partCount);
         modelAndView.addObject("pageCount", pageCount);
+        modelAndView.addObject("countPC", countPC);
         return modelAndView;
     }
 }

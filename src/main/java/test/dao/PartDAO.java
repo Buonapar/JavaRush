@@ -12,4 +12,5 @@ public interface PartDAO {
     Part getId(int id);
     int partsCount();
     List<Part> search(String query);
+    List<Part> allNecessity();
 }

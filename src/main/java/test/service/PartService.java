@@ -12,4 +12,5 @@ public interface PartService {
     Part getId(int id);
     int partsCount();
     List<Part> search(String query);
+    int countPC ();
 }
