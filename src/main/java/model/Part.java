@@ -1,9 +1,23 @@
 package model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "part")
 public class Part {
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "necessity")
     private boolean necessity;
+
+    @Column(name = "quantity")
     private int quantity;
 
     public int getId() {
