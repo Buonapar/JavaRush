@@ -38,17 +38,21 @@ public class PartDAOImpl implements PartDAO {
 
     @Override
     public void edit(Part part) {
-
+        Session session = sessionFactory.getCurrentSession();
+        session.update(part);
     }
 
     @Override
     public Part getId(int id) {
-        return null;
+        Session session = sessionFactory.getCurrentSession();
+        return session.get(Part.class, id);
     }
 
     @Override
     public int partsCount() {
-        return 0;
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "SELECT COUNT (*) FROM Part";
+        return session.createQuery(hql, Number.class).getSingleResult().intValue();
     }
 
     @Override

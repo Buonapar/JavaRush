@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Алексей
@@ -8,9 +9,30 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Список комплектующих</title>
+    <title>Редактирование комплектующих</title>
 </head>
 <body>
+    <form action="/edit" method="post">
+            <table>
+                <caption>Редактирование "${part.name}"</caption>
+                <tr>
+                    <th>Наименование</th>
+                    <th>Необходимость</th>
+                    <th>Количество</th>
+                </tr>
+                <tr>
+                    <td><input type="text" value="${part.name}"></td>
+                    <td>
+                        <select name="necessity" id="necessity">
+                            <option value="true">Да</option>
+                            <option value="false">Нет</option>
+                        </select>
+                    </td>
+                    <td><input type="text" value="${part.quantity}"></td>
+                </tr>
+            </table>
 
+        <input type="submit" value="Подтвердить изменения">
+    </form>
 </body>
 </html>

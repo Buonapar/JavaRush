@@ -1,11 +1,9 @@
 package test.controller;
 
+import org.springframework.web.bind.annotation.*;
 import test.model.Part;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import test.service.PartService;
 
@@ -29,14 +27,31 @@ public class PartController {
         ModelAndView modelAndView = new ModelAndView();
         List<Part> parts = partService.PartsList(page);
         int partCount = partService.partsCount();
-        int pageCount = (partCount + 9) /10;
-        int countPC = partService.countPC();
+        int pageCount = (partCount + 9) / 10;
+//        int countPC = partService.countPC();
         modelAndView.setViewName("parts");
         modelAndView.addObject("page", page);
         modelAndView.addObject("partsList", parts);
         modelAndView.addObject("partCount", partCount);
         modelAndView.addObject("pageCount", pageCount);
-        modelAndView.addObject("countPC", countPC);
+//        modelAndView.addObject("countPC", countPC);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public ModelAndView editPage(@PathVariable("id") int id) {
+        ModelAndView modelAndView = new ModelAndView();
+        Part part = partService.getId(id);
+        modelAndView.setViewName("editParts");
+        modelAndView.addObject("part", part);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public ModelAndView edit(@ModelAttribute("part") Part part) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/");
+        partService.edit(part);
         return modelAndView;
     }
 }

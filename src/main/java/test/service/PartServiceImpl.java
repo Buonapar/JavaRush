@@ -62,14 +62,18 @@ public class PartServiceImpl implements PartService {
     }
 
     @Override
-    @Transactional
     public int countPC() {
-        List<Part> parts = partDAO.allNecessity();
-        int result = parts.get(0).getQuantity();
-        for (Part part : parts) {
-            if (result > part.getQuantity())
-                result = part.getQuantity();
-        }
-        return result;
+        return 0;
     }
+    //    @Override
+//    @Transactional
+//    public int countPC() {
+//        List<Part> parts = partDAO.allNecessity();
+//        int result = parts.get(0).getQuantity();
+//        for (Part part : parts) {
+//            if (result > part.getQuantity())
+//                result = part.getQuantity();
+//        }
+//        return result;
+//    }
 }
