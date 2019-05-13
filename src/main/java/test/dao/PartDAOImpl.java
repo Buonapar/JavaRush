@@ -58,7 +58,9 @@ public class PartDAOImpl implements PartDAO {
 
     @Override
     public List<Part> search(String query) {
-        return null;
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "FROM Part WHERE name like '%" + query + "%'";
+        return session.createQuery(hql).list();
     }
 
     @Override

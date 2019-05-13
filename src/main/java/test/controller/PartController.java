@@ -78,4 +78,14 @@ public class PartController {
         partService.add(part);
         return modelAndView;
     }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public ModelAndView searchParts(@RequestParam String name) {
+        List<Part> searchParts = partService.search(name);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("search");
+        modelAndView.addObject("searchParts", searchParts);
+        modelAndView.addObject("query", name);
+        return modelAndView;
+    }
 }

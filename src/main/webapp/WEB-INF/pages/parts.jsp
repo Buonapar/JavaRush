@@ -44,7 +44,14 @@
         </c:url>
         <a class="tf" href="${url}">${i.index}</a>
     </c:forEach>
+
     <c:url value="/add" var="add"/>
-    <a href="${add}">Добавить комплектующие</a>
+    <a href="${add}">Добавить комплектующие</a><br>
+
+    <c:url value="/search" var="search"/>
+    <form name="name" method="get" action="${search}">
+        <input type="text" size="20" name="name" value="">
+        <input type="submit" value="Найти по наименованию">
+    </form>
 </body>
 </html>
