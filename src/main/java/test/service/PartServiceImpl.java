@@ -61,19 +61,15 @@ public class PartServiceImpl implements PartService {
         return partDAO.search(query);
     }
 
-    @Override
+        @Override
+    @Transactional
     public int countPC() {
-        return 0;
+        List<Part> parts = partDAO.allNecessity();
+        int result = parts.get(0).getQuantity();
+        for (Part part : parts) {
+            if (result > part.getQuantity())
+                result = part.getQuantity();
+        }
+        return result;
     }
-    //    @Override
-//    @Transactional
-//    public int countPC() {
-//        List<Part> parts = partDAO.allNecessity();
-//        int result = parts.get(0).getQuantity();
-//        for (Part part : parts) {
-//            if (result > part.getQuantity())
-//                result = part.getQuantity();
-//        }
-//        return result;
-//    }
 }

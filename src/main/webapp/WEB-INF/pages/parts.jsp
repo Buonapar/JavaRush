@@ -13,7 +13,7 @@
 </head>
 <body>
     <table>
-        <caption>Список комплектующих</caption>
+        <caption>Список комплектующих (${partCount} позиций)</caption>
         <tr>
             <th>Наименование</th>
             <th>Необходимость</th>
@@ -28,11 +28,12 @@
                 </td>
                 <td>${part.quantity}</td>
                 <td><a href="/edit/${part.id}">Редактировать</a> </td>
+                <td><a href="/delete/${part.id}">Удаление</a> </td>
             </tr>
         </c:forEach>
         <tr>
             <th>Можно собрать</th>
-<%--            <th>${countPC}</th>--%>
+            <th>${countPC}</th>
             <th>компьютеров</th>
         </tr>
     </table>
@@ -43,5 +44,7 @@
         </c:url>
         <a class="tf" href="${url}">${i.index}</a>
     </c:forEach>
+    <c:url value="/add" var="add"/>
+    <a href="${add}">Добавить комплектующие</a>
 </body>
 </html>

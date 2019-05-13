@@ -33,7 +33,8 @@ public class PartDAOImpl implements PartDAO {
 
     @Override
     public void delete(Part part) {
-
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(part);
     }
 
     @Override

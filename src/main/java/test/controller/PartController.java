@@ -28,13 +28,13 @@ public class PartController {
         List<Part> parts = partService.PartsList(page);
         int partCount = partService.partsCount();
         int pageCount = (partCount + 9) / 10;
-//        int countPC = partService.countPC();
+        int countPC = partService.countPC();
         modelAndView.setViewName("parts");
         modelAndView.addObject("page", page);
         modelAndView.addObject("partsList", parts);
         modelAndView.addObject("partCount", partCount);
         modelAndView.addObject("pageCount", pageCount);
-//        modelAndView.addObject("countPC", countPC);
+        modelAndView.addObject("countPC", countPC);
         return modelAndView;
     }
 
@@ -52,6 +52,30 @@ public class PartController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/");
         partService.edit(part);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public  ModelAndView delete(@PathVariable("id") int id) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/");
+        Part part = partService.getId(id);
+        partService.delete(part);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public ModelAndView addPage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("editParts");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public ModelAndView addPart(@ModelAttribute("part") Part part) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/");
+        partService.add(part);
         return modelAndView;
     }
 }
