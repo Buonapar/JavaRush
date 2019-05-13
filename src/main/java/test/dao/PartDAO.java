@@ -13,4 +13,5 @@ public interface PartDAO {
     int partsCount();
     List<Part> search(String query);
     List<Part> allNecessity();
+    List<Part> allNotNecessity();
 }

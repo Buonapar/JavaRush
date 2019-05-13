@@ -13,4 +13,7 @@ public interface PartService {
     int partsCount();
     List<Part> search(String query);
     int countPC ();
+    List<Part> allNecessity();
+    List<Part> allNotNecessity();
+
 }

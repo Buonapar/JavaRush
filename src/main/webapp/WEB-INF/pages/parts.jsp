@@ -12,8 +12,24 @@
     <title>Список комплектующих</title>
 </head>
 <body>
+    <c:url value="/" var="home"/>
+    <form method="get" action="${home}">
+        <input type="hidden" name="page" value="${page}">
+        <button type="submit" name="importance" value="1" > Все</button>
+        <button type="submit" name="importance" value="2">Необходимые</button>
+        <button type="submit" name="importance" value="3">Опциональные</button>
+<%--        <input type="submit" value="Сортировать">--%>
+    </form>
     <table>
-        <caption>Список комплектующих (${partCount} позиций)</caption>
+        <c:if test="${importance eq 1}">
+            <caption>Список всех комплектующих (${partCount} позиций)</caption>
+        </c:if>
+        <c:if test="${importance eq 2}">
+            <caption>Комплектующие необходимые для сборки (${partsList.size()} позиций)</caption>
+        </c:if>
+        <c:if test="${importance eq 3}">
+            <caption>Комплектующие опциональные (${partsList.size()} позиций)</caption>
+        </c:if>
         <tr>
             <th>Наименование</th>
             <th>Необходимость</th>
@@ -31,12 +47,15 @@
                 <td><a href="/delete/${part.id}">Удаление</a> </td>
             </tr>
         </c:forEach>
+        <c:if test="${importance eq 1}">
         <tr>
             <th>Можно собрать</th>
             <th>${countPC}</th>
             <th>компьютеров</th>
         </tr>
+        </c:if>
     </table>
+    <c:if test="${importance eq 1}">
     <b>Страницы: </b>
     <c:forEach begin="1" end="${pageCount}" step="1" varStatus="i">
         <c:url value="/" var="url">
@@ -44,7 +63,7 @@
         </c:url>
         <a class="tf" href="${url}">${i.index}</a>
     </c:forEach>
-
+    </c:if>
     <c:url value="/add" var="add"/>
     <a href="${add}">Добавить комплектующие</a><br>
 

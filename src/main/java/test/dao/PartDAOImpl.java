@@ -57,6 +57,7 @@ public class PartDAOImpl implements PartDAO {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<Part> search(String query) {
         Session session = sessionFactory.getCurrentSession();
         String hql = "FROM Part WHERE name like '%" + query + "%'";
@@ -64,9 +65,17 @@ public class PartDAOImpl implements PartDAO {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<Part> allNecessity() {
         Session session = sessionFactory.getCurrentSession();
         String hql = "FROM Part WHERE necessity = true ";
+        return session.createQuery(hql).list();
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Part> allNotNecessity() {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "FROM Part where necessity = false ";
         return session.createQuery(hql).list();
     }
 }

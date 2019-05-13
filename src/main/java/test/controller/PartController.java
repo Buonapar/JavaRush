@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 import test.service.PartService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -22,15 +23,28 @@ public class PartController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView allParts(@RequestParam(defaultValue = "1") int page) {
+    public ModelAndView allParts(@RequestParam(defaultValue = "1") int page,@RequestParam(defaultValue = "1") int importance) {
         this.page = page;
+        List<Part> parts= new ArrayList<>();
         ModelAndView modelAndView = new ModelAndView();
-        List<Part> parts = partService.PartsList(page);
+        modelAndView.setViewName("parts");
         int partCount = partService.partsCount();
         int pageCount = (partCount + 9) / 10;
         int countPC = partService.countPC();
-        modelAndView.setViewName("parts");
+
+        if (importance == 1) {
+            parts = partService.PartsList(page);
+        }
+
+        if (importance == 2) {
+            parts = partService.allNecessity();
+
+        }
+        if (importance ==3) {
+            parts = partService.allNotNecessity();
+        }
         modelAndView.addObject("page", page);
+        modelAndView.addObject("importance", importance);
         modelAndView.addObject("partsList", parts);
         modelAndView.addObject("partCount", partCount);
         modelAndView.addObject("pageCount", pageCount);
