@@ -32,17 +32,18 @@ public class PartController {
         int pageCount = (partCount + 9) / 10;
         int countPC = partService.countPC();
 
-        if (importance == 1) {
-            parts = partService.PartsList(page);
+        switch (importance) {
+
+            case 1: parts = partService.PartsList(page);
+                    break;
+
+            case 2: parts = partService.allNecessity();
+                    break;
+
+            case 3: parts = partService.allNotNecessity();
+                    break;
         }
 
-        if (importance == 2) {
-            parts = partService.allNecessity();
-
-        }
-        if (importance ==3) {
-            parts = partService.allNotNecessity();
-        }
         modelAndView.addObject("page", page);
         modelAndView.addObject("importance", importance);
         modelAndView.addObject("partsList", parts);

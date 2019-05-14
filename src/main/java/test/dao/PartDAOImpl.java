@@ -72,6 +72,7 @@ public class PartDAOImpl implements PartDAO {
         return session.createQuery(hql).list();
     }
 
+    @Override
     @SuppressWarnings("unchecked")
     public List<Part> allNotNecessity() {
         Session session = sessionFactory.getCurrentSession();
