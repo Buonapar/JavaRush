@@ -15,6 +15,14 @@
     <c:if test="${!empty part.name}">
         <title>Добавление нового комплектующего</title>
     </c:if>
+    <style>
+        table, body{
+            text-align: center;
+        }
+        table {
+            margin: auto;
+        }
+    </style>
 </head>
 <body>
     <c:if test="${empty part.name}">
@@ -23,37 +31,38 @@
     <c:if test="${!empty part.name}">
         <c:url value="/edit" var="var"/>
     </c:if>
-    <form action="${var}" method="post">
+    <h1><a href="/">Склад деталей</a></h1>
+        <form action="${var}" method="post">
         <c:if test="${!empty part.name}">
             <input type="hidden" name="id" value="${part.id}">
         </c:if>
-            <table border="1">
-                <c:if test="${empty part.name}">
-                    <caption>Добавление нового комплектующего</caption>
-                </c:if>
-                <c:if test="${!empty part.name}">
-                    <caption>Редактирование "${part.name}"</caption>
-                </c:if>
-                <tr>
-                    <th>Наименование</th>
-                    <th>Необходимость</th>
-                    <th>Количество</th>
-                </tr>
-                <tr>
-                    <td><label>
-                        <input type="text" name="name" value="${part.name}">
-                    </label></td>
-                    <td>
-                        <select name="necessity">
-                            <option value="true">Да</option>
-                            <option value="false">Нет</option>
-                        </select>
-                    </td>
-                    <td><label>
-                        <input type="text" name="quantity" value="${part.quantity}">
-                    </label></td>
-                </tr>
-            </table>
+        <table border="1">
+            <c:if test="${empty part.name}">
+                <caption>Добавление нового комплектующего</caption>
+            </c:if>
+            <c:if test="${!empty part.name}">
+                <caption>Редактирование "${part.name}"</caption>
+            </c:if>
+            <tr>
+                <th>Наименование</th>
+                <th>Необходимость</th>
+                <th>Количество</th>
+            </tr>
+            <tr>
+                <td><label>
+                    <input type="text" name="name" value="${part.name}">
+                </label></td>
+                <td>
+                    <select name="necessity">
+                        <option value="true">Да</option>
+                        <option value="false">Нет</option>
+                    </select>
+                </td>
+                <td><label>
+                    <input type="text" name="quantity" value="${part.quantity}">
+                </label></td>
+            </tr>
+        </table>
         <c:if test="${empty part.name}">
             <input type="submit" value="Добавить комплектующее">
         </c:if>

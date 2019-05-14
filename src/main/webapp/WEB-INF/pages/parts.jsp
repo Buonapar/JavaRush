@@ -10,15 +10,25 @@
 <html>
 <head>
     <title>Список комплектующих</title>
+    <style>
+        table, body{
+            text-align: center;
+        }
+        table {
+            margin: auto;
+        }
+    </style>
 </head>
 <body>
     <c:url value="/" var="home"/>
+    <h1><a href="${home}">Склад деталей</a></h1>
     <form method="get" action="${home}">
         <input type="hidden" name="page" value="${page}">
+        Показывать
         <button type="submit" name="importance" value="1" > Все</button>
         <button type="submit" name="importance" value="2">Необходимые</button>
         <button type="submit" name="importance" value="3">Опциональные</button>
-<%--        <input type="submit" value="Сортировать">--%>
+         детали:
     </form>
     <table border="1">
         <c:if test="${importance eq 1}">
@@ -44,7 +54,7 @@
                 </td>
                 <td>${part.quantity}</td>
                 <td><a href="/edit/${part.id}">Редактировать</a> </td>
-                <td><a href="/delete/${part.id}">Удаление</a> </td>
+                <td><a href="/delete/${part.id}">Удалить</a> </td>
             </tr>
         </c:forEach>
         <c:if test="${importance eq 1}">

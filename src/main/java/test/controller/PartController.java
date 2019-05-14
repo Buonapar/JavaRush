@@ -24,13 +24,18 @@ public class PartController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView allParts(@RequestParam(defaultValue = "1") int page,@RequestParam(defaultValue = "1") int importance) {
-        this.page = page;
+
         List<Part> parts= new ArrayList<>();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("parts");
         int partCount = partService.partsCount();
         int pageCount = (partCount + 9) / 10;
         int countPC = partService.countPC();
+
+        if((page < 1) || (page > pageCount)) page = 1;
+        if ((importance < 1) || (importance > 3)) importance = 1;
+
+        this.page = page;
 
         switch (importance) {
 
