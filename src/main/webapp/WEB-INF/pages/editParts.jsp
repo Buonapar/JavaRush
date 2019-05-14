@@ -27,7 +27,7 @@
         <c:if test="${!empty part.name}">
             <input type="hidden" name="id" value="${part.id}">
         </c:if>
-            <table>
+            <table border="1">
                 <c:if test="${empty part.name}">
                     <caption>Добавление нового комплектующего</caption>
                 </c:if>

@@ -12,7 +12,7 @@
     <title>Результаты поиска</title>
 </head>
 <body>
-<table>
+<table border="1">
     <caption>Список комплектующих найденных по запросу "${query}"</caption>
     <tr>
         <th>Наименование</th>

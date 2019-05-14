@@ -20,7 +20,7 @@
         <button type="submit" name="importance" value="3">Опциональные</button>
 <%--        <input type="submit" value="Сортировать">--%>
     </form>
-    <table>
+    <table border="1">
         <c:if test="${importance eq 1}">
             <caption>Список всех комплектующих (${partCount} позиций)</caption>
         </c:if>
