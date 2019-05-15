@@ -20,9 +20,9 @@ public class PartDAOImpl implements PartDAO {
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<Part> PartsList(int page) {
+    public List<Part> PartsList(int page, String sorted) {
         Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("FROM Part").setFirstResult(10 * (page - 1)).setMaxResults(10).list();
+        return session.createQuery("FROM Part ORDER BY " + sorted).setFirstResult(10 * (page - 1)).setMaxResults(10).list();
     }
 
     @Override

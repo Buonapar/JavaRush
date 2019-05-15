@@ -41,9 +41,11 @@
             <caption>Комплектующие опциональные (${partsList.size()} позиций)</caption>
         </c:if>
         <tr>
-            <th>Наименование</th>
-            <th>Необходимость</th>
-            <th>Количество</th>
+            <th><a href="${home}?page=${page}&importance=${importance}&sorted=name">Наименование</a></th>
+            <th><a href="${home}?page=${page}&importance=${importance}&sorted=necessity">Необходимость</a></th>
+            <th><a href="${home}?page=${page}&importance=${importance}&sorted=quantity">Количество</a></th>
+            <th>&nbsp</th>
+            <th>&nbsp</th>
         </tr>
         <c:forEach var="part" items="${partsList}" varStatus="i">
             <tr>
@@ -62,6 +64,8 @@
             <th>Можно собрать</th>
             <th>${countPC}</th>
             <th>компьютеров</th>
+            <th>&nbsp</th>
+            <th>&nbsp</th>
         </tr>
         </c:if>
     </table>
@@ -71,7 +75,7 @@
         <c:url value="/" var="url">
             <c:param name="page" value="${i.index}"/>
         </c:url>
-        <a class="tf" href="${url}">${i.index}</a>
+        <a class="tf" href="${url}&sorted=${sorted}">${i.index}</a>
     </c:forEach>
     </c:if>
     <c:url value="/add" var="add"/>

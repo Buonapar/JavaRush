@@ -5,7 +5,7 @@ import test.model.Part;
 import java.util.List;
 
 public interface PartService {
-    List<Part> PartsList (int page);
+    List<Part> PartsList (int page, String sorted);
     void add(Part part);
     void delete(Part part);
     void edit(Part part);

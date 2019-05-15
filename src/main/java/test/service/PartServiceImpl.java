@@ -21,8 +21,8 @@ public class PartServiceImpl implements PartService {
 
     @Override
     @Transactional
-    public List<Part> PartsList(int page) {
-        return partDAO.PartsList(page);
+    public List<Part> PartsList(int page, String sorted) {
+        return partDAO.PartsList(page, sorted);
     }
 
     @Override

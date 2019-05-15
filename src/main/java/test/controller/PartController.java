@@ -13,7 +13,7 @@ import java.util.List;
 @Controller
 public class PartController {
 
-    private  int page;
+    private  int page; String sorted;
 
     private PartService partService;
 
@@ -23,7 +23,7 @@ public class PartController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView allParts(@RequestParam(defaultValue = "1") int page,@RequestParam(defaultValue = "1") int importance) {
+    public ModelAndView allParts(@RequestParam(defaultValue = "1") int page,@RequestParam(defaultValue = "1") int importance, @RequestParam(defaultValue = "id") String sorted) {
 
         List<Part> parts= new ArrayList<>();
         ModelAndView modelAndView = new ModelAndView();
@@ -36,10 +36,11 @@ public class PartController {
         if ((importance < 1) || (importance > 3)) importance = 1;
 
         this.page = page;
+        this.sorted = sorted;
 
         switch (importance) {
 
-            case 1: parts = partService.PartsList(page);
+            case 1: parts = partService.PartsList(page, sorted);
                     break;
 
             case 2: parts = partService.allNecessity();
@@ -50,6 +51,7 @@ public class PartController {
         }
 
         modelAndView.addObject("page", page);
+        modelAndView.addObject("sorted", sorted);
         modelAndView.addObject("importance", importance);
         modelAndView.addObject("partsList", parts);
         modelAndView.addObject("partCount", partCount);
